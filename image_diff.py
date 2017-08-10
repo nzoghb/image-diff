@@ -1,3 +1,5 @@
+# Image credit: http://www.spotthedifference.com/
+
 # import the necessary packages
 import argparse
 import os
