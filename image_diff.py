@@ -48,6 +48,9 @@ bndrs = (find_boundaries(thresh_image, mode='outer') * 255).astype("uint8")
 # regions on the input image to represent where the two images differ
 label_image = label(bndrs)
 
+# print(label_image)
+# print(regionprops(label_image))
+
 # build image display
 fig, ax = plt.subplots(2, sharey=True)
 
@@ -59,13 +62,10 @@ ax[1].imshow(imageB)
 
 # draw bounding box
 for region in regionprops(label_image):
-    # take regions with large enough areas
-    if region.area >= 50:
-        # draw rectangle around segmented coins
-        minr, minc, maxr, maxc = region.bbox
-        rect = mpatches.Rectangle((minc, minr), maxc - minc, maxr - minr,
-                                  fill=False, edgecolor='red', linewidth=2)
-        ax[0].add_patch(rect)
+    minr, minc, maxr, maxc = region.bbox
+    rect = mpatches.Rectangle((minc, minr), maxc - minc, maxr - minr,
+                              fill=False, edgecolor='red', linewidth=2)
+    ax[0].add_patch(rect)
 
 ax[0].set_axis_off()
 ax[1].set_axis_off()
